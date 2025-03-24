@@ -271,13 +271,13 @@ TextureImporter:
       name: 09 Border 01_4
       rect:
         serializedVersion: 2
-        x: 127
-        y: 127
-        width: 66
-        height: 129
+        x: 128
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 18, y: 17, z: 18, w: 18}
       customData: 
       outline: []
       physicsShape: []
