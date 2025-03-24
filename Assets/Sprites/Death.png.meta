@@ -149,7 +149,7 @@ TextureImporter:
         width: 44
         height: 54
       alignment: 9
-      pivot: {x: 0.49055532, y: 0}
+      pivot: {x: 0.9783254, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -171,7 +171,7 @@ TextureImporter:
         width: 45
         height: 51
       alignment: 9
-      pivot: {x: 0.48005438, y: 0}
+      pivot: {x: 0.9160836, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -193,7 +193,7 @@ TextureImporter:
         width: 48
         height: 49
       alignment: 9
-      pivot: {x: 0.4750347, y: 0}
+      pivot: {x: 0.91608363, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -210,12 +210,12 @@ TextureImporter:
       name: Death_3
       rect:
         serializedVersion: 2
-        x: 668
+        x: 667
         y: 78
         width: 50
         height: 46
       alignment: 9
-      pivot: {x: 0.47, y: 0}
+      pivot: {x: 0.9160836, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -237,7 +237,7 @@ TextureImporter:
         width: 53
         height: 43
       alignment: 9
-      pivot: {x: 0.47, y: 0}
+      pivot: {x: 0.9160836, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -259,7 +259,7 @@ TextureImporter:
         width: 50
         height: 46
       alignment: 9
-      pivot: {x: 0.47, y: 0}
+      pivot: {x: 0.9160836, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
