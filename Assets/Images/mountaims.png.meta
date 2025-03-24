@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 31bf2907201454049a123a23313eacdf
+guid: aff813ff4d09a1e4a959b996b4d69285
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7460046300004610927
-    second: Jump_0
-  - first:
-      213: 7034338576483803127
-    second: Jump_1
+      213: 1353923314421590896
+    second: mountaims_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,10 +72,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
-    resizeAlgorithm: 1
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -129,45 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jump_0
+      name: mountaims_0
       rect:
         serializedVersion: 2
-        x: 75
-        y: 78
-        width: 40
-        height: 54
-      alignment: 9
-      pivot: {x: 0.49165326, y: 0}
+        x: 0
+        y: 0
+        width: 1920
+        height: 865
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f63fdb7b598678760800000000000000
-      internalID: 7460046300004610927
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jump_1
-      rect:
-        serializedVersion: 2
-        x: 275
-        y: 78
-        width: 40
-        height: 54
-      alignment: 9
-      pivot: {x: 0.4916533, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7ffd4217aadfe9160800000000000000
-      internalID: 7034338576483803127
+      spriteID: 07be731c41a1ac210800000000000000
+      internalID: 1353923314421590896
       vertices: []
       indices: 
       edges: []
@@ -176,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 298eecd2ac7cc9a41b4f2f3359419930
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -186,8 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Jump_0: 7460046300004610927
-      Jump_1: 7034338576483803127
+      mountaims_0: 1353923314421590896
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
