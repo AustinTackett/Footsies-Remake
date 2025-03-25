@@ -2,27 +2,22 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public enum ActionType
-{
-    Attack1,
-    Hit,
-    Move,
-}
-
 public class PlayerBehaviour : MonoBehaviour
 {
-    public float speed = 80;
+    public float speed = 300;
+    public float attackRange = 1000;
+    public float attackRadius = 10;
 
-    private ActionType action;
     private Animator animator;
     private Rigidbody2D rigidBody;
     private Vector2 moveDir;
+    private Collider2D selfCollider;
 
-    public void Start()
+    void Start()
     {
-        action = ActionType.Move;
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
+        selfCollider = GetComponent<Collider2D>();
         moveDir = Vector2.zero;
     }
 
@@ -42,7 +37,6 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-
     public void FaceMovementDir(Vector3 velocity)
     {
         if(velocity.x > 0)
@@ -53,12 +47,25 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void OnAttack1()
     {
+        
+        Vector3 playerCenter = selfCollider.bounds.center;
+        Vector3 direction;
 
+        Debug.Log(transform.rotation.eulerAngles.y);
+        if (transform.rotation.eulerAngles.y == 180)
+            direction = Vector3.left;
+        else    
+            direction = Vector3.right;
+         
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(playerCenter, attackRadius, direction, attackRange);
+        foreach(RaycastHit2D hit in hits)
+            Debug.Log(hit.collider.gameObject.tag);
     }
 
     public void OnAttack1Input()
     {
         animator.SetBool("Attack1", true);
+        OnAttack1();
     }
 
     public void OnMoveInput(InputValue value)
@@ -69,6 +76,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void OnHit()
     {
         Debug.Log("Hit!");
+        animator.SetBool("Hit", true);
     }
 
 }
