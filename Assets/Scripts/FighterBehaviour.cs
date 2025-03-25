@@ -4,9 +4,11 @@ using UnityEngine.InputSystem;
 
 public class FighterBehaviour : MonoBehaviour
 {
+    public int life = 3;
     public float speed = 300;
-    public float attackRange = 1000;
-    public float attackRadius = 10;
+    public float attackRange = 4;
+    public float attackRadius = 1;
+    public LifeMeterBehaviour LifeMeter;
 
     private Animator animator;
     private Rigidbody2D rigidBody;
@@ -26,8 +28,16 @@ public class FighterBehaviour : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 velocity = moveDir * speed * Time.fixedDeltaTime;
-        rigidBody.linearVelocity = velocity;
-        FaceMovementDir(velocity);
+
+        if(animator.GetBool("Attack1") || animator.GetBool("Hit"))
+        {
+            rigidBody.linearVelocity = Vector3.zero;
+        }
+        else
+        {
+            rigidBody.linearVelocity = velocity;
+            FaceMovementDir(velocity);
+        }
 
         if(velocity == Vector3.zero)
         {
@@ -89,6 +99,12 @@ public class FighterBehaviour : MonoBehaviour
 
         // Make sure if attack is interrupted the attacking state is released
         animator.SetBool("Attack1", false);
+
+        if(LifeMeter != null)
+        {
+            Debug.Log("Remove Heart");
+            LifeMeter.RemoveHeart();
+        }
     }
 
     public void OnEndHit()
@@ -98,8 +114,11 @@ public class FighterBehaviour : MonoBehaviour
 
     public void OnAttack1Input()
     {
-        animator.SetBool("Attack1", true);
-        OnAttack1();
+        if(!animator.GetBool("Attack1") && !animator.GetBool("Hit"))
+        {
+            animator.SetBool("Attack1", true);
+            OnAttack1();
+        }
     }
 
     public void OnMoveInput(InputValue value)
