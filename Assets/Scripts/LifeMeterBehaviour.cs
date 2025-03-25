@@ -7,14 +7,14 @@ public class LifeMeterBehaviour : MonoBehaviour
     public Sprite LifeSprite;
     public Sprite EmptyLifeSprite;
     public Image[] spriteRenderers;
-    private int lifeCount;
+    [HideInInspector] public int lifeCount;
 
     void Start()
     {
         spriteRenderers = GetComponentsInChildren<Image>();
         Image panelSprite = GetComponent<Image>();
-        
-        // Remove Parent sprite
+
+        // Remove panel sprite (get components in children also get component in self)
         if (panelSprite != null)
         {
             for(int i = 0; i < spriteRenderers.Length; i++)
