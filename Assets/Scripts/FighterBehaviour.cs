@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBehaviour : MonoBehaviour
+public class FighterBehaviour : MonoBehaviour
 {
     public float speed = 300;
     public float attackRange = 1000;
@@ -12,6 +12,7 @@ public class PlayerBehaviour : MonoBehaviour
     private Rigidbody2D rigidBody;
     private Vector2 moveDir;
     private Collider2D selfCollider;
+    private int selfExcludedLayerMask;
 
     void Start()
     {
@@ -19,6 +20,7 @@ public class PlayerBehaviour : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         selfCollider = GetComponent<Collider2D>();
         moveDir = Vector2.zero;
+        selfExcludedLayerMask = ~(1 << gameObject.layer);
     }
 
     void FixedUpdate()
@@ -50,16 +52,48 @@ public class PlayerBehaviour : MonoBehaviour
         
         Vector3 playerCenter = selfCollider.bounds.center;
         Vector3 direction;
-
-        Debug.Log(transform.rotation.eulerAngles.y);
         if (transform.rotation.eulerAngles.y == 180)
             direction = Vector3.left;
         else    
             direction = Vector3.right;
          
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(playerCenter, attackRadius, direction, attackRange);
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(
+            playerCenter, 
+            attackRadius, 
+            direction, 
+            attackRange, 
+            selfExcludedLayerMask
+        );
+
         foreach(RaycastHit2D hit in hits)
-            Debug.Log(hit.collider.gameObject.tag);
+        {
+            GameObject collisionGO = hit.collider.gameObject;
+            if(collisionGO.TryGetComponent<FighterBehaviour>(out FighterBehaviour opponent))
+            {
+                Debug.Log("I see hit!");
+                opponent.OnHit();
+            }
+        }
+    }
+
+    public void OnEndAttack1()
+    {
+        animator.SetBool("Attack1", false);
+    }
+
+
+    public void OnHit()
+    {
+        Debug.Log("Hit!");
+        animator.SetBool("Hit", true);
+
+        // Make sure if attack is interrupted the attacking state is released
+        animator.SetBool("Attack1", false);
+    }
+
+    public void OnEndHit()
+    {
+        animator.SetBool("Hit", false);
     }
 
     public void OnAttack1Input()
@@ -72,11 +106,4 @@ public class PlayerBehaviour : MonoBehaviour
     {
         moveDir = value.Get<Vector2>();
     }
-
-    public void OnHit()
-    {
-        Debug.Log("Hit!");
-        animator.SetBool("Hit", true);
-    }
-
 }
