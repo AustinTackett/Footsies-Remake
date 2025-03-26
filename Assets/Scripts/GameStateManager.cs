@@ -82,7 +82,8 @@ public class GameStateManager : MonoBehaviour
             if(!isWaiting)
             {
                 roundMeter2.AddRound();
-                if(roundMeter1.roundsWon >= 3)
+                Debug.Log(roundMeter2.roundsWon);
+                if(roundMeter2.roundsWon >= 3)
                 {
                     StartCoroutine(WaitThenTransition(GameState.GameOver, 1));
                 }
@@ -98,6 +99,7 @@ public class GameStateManager : MonoBehaviour
             if(!isWaiting)
             {
                 roundMeter1.AddRound();
+                Debug.Log(roundMeter1.roundsWon);
                 if(roundMeter1.roundsWon >= 3)
                 {
                     StartCoroutine(WaitThenTransition(GameState.GameOver, 1));

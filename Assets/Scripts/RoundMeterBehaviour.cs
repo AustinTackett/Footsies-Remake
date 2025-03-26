@@ -10,7 +10,7 @@ public class RoundMeterBehaviour : MonoBehaviour
 
     void Awake()
     {
-        roundsWon= 0;
+        roundsWon = 0;
         spriteRenderers = GetComponentsInChildren<Image>();
         Image panelSprite = GetComponent<Image>();
 
@@ -44,6 +44,7 @@ public class RoundMeterBehaviour : MonoBehaviour
 
             spriteRenderers[roundIndex].gameObject.SetActive(true);
             roundsWon++;
+            Debug.Log("Rounds" + roundsWon);
         }
     }    
 
