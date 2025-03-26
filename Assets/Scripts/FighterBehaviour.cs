@@ -18,6 +18,8 @@ public class FighterBehaviour : MonoBehaviour
     private int selfExcludedLayerMask;
     private Vector3 startingPosition;
     private Quaternion startingRotation;
+    private AudioSource hitAudio;
+    private AudioSource deathAudio;
 
     void Awake()
     {
@@ -33,6 +35,9 @@ public class FighterBehaviour : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         selfCollider = GetComponent<Collider2D>();
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        hitAudio = audioSources[0];
+        deathAudio = audioSources[1];
     }
 
     void FixedUpdate()
@@ -113,9 +118,10 @@ public class FighterBehaviour : MonoBehaviour
     public void OnHit()
     {
         animator.SetBool("Hit", true);
-
         // Make sure if attack is interrupted the attacking state is released
         animator.SetBool("Attack1", false);
+
+        hitAudio.Play();
     }
 
     public void OnEndHit()
@@ -138,6 +144,7 @@ public class FighterBehaviour : MonoBehaviour
     {
         if(isDead) return;
 
+        deathAudio.Play();
         isDead = true;
         animator.SetBool("Attack1", false);
         animator.SetBool("Hit", false);
