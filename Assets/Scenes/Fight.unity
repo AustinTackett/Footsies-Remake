@@ -1702,7 +1702,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8113279885352018040, guid: 2e68f0cba5c4b5d48982aee07ce025a0, type: 3}
   m_PrefabInstance: {fileID: 481848956}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1216920843}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20fe43bc22b6b13498b8d48c7df787e9, type: 3}
@@ -4382,6 +4382,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1211117629}
   m_CullTransparentMesh: 1
+--- !u!1 &1216920843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8995313421287904781, guid: 2e68f0cba5c4b5d48982aee07ce025a0, type: 3}
+  m_PrefabInstance: {fileID: 481848956}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1242098757
 GameObject:
   m_ObjectHideFlags: 0
@@ -6573,6 +6578,8 @@ MonoBehaviour:
   endFightMenu: {fileID: 1119770516}
   backgroundMusic: {fileID: 1791301032}
   fightEndMusic: {fileID: 383621659}
+  instructionText: {fileID: 1216920843}
+  pauseMenu: {fileID: 965672910}
 --- !u!1 &1991047690
 GameObject:
   m_ObjectHideFlags: 0
