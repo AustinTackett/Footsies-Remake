@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 1.3, y: -304}
+  m_AnchoredPosition: {x: -0.001471, y: -291}
   m_SizeDelta: {x: 377.1, y: 313.48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1011897371468755636
@@ -65,23 +65,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'This Game is designed to be played with two player on the same device.
+  m_text: 'You will fight an opponent by moving around the arena and slashing your
+    sword.
 
 
-    Player
-    1 moves with wasd and attacks with the f key.
+    The winner is whomever wins three rounds first.
 
 
-    Player 2 moves with the arrow
-    keys and attacks with the space bar.
+    Movement is
+    controlled WASD and to performan a slash attack press the J key.
 
 
-    Each Player has 3 lifes per round
-    and the winner is decided after 3 rounds are won.
-
-
-    ESC key brings up pause
-    menu during fight.'
+    During
+    the fight pressing ESC opens a menu to restart the fight, return to the main
+    menu, and reopen this instruction panel.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 05ac21b97c1db054f8f1bd09059eb988, type: 2}
   m_sharedMaterial: {fileID: -153186835500426936, guid: 05ac21b97c1db054f8f1bd09059eb988, type: 2}
