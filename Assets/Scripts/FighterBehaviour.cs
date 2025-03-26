@@ -91,8 +91,6 @@ public class FighterBehaviour : MonoBehaviour
             GameObject collisionGO = hit.collider.gameObject;
             if(collisionGO.TryGetComponent<FighterBehaviour>(out FighterBehaviour opponent))
             {
-                Debug.Log("I see hit!");
-                Debug.Log("LIFE " + opponent.LifeMeter.lifeCount);
                 opponent.LifeMeter.RemoveHeart();
                 if(opponent.LifeMeter.lifeCount > 0)
                     opponent.OnHit();

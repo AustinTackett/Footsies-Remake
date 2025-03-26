@@ -78,8 +78,9 @@ public class GameStateManager : MonoBehaviour
             if(!isWaiting)
             {
                 Debug.Log("Player 2 won");
-                StartCoroutine(WaitThenTransition(GameState.FightEnd));
                 roundMeter2.AddRound();
+                StartCoroutine(WaitThenTransition(GameState.FightEnd));
+                
             }
         }
 
@@ -88,9 +89,9 @@ public class GameStateManager : MonoBehaviour
             if(!isWaiting)
             {
                 Debug.Log("Player 1 won");
+                roundMeter1.AddRound();
                 StartCoroutine(WaitThenTransition(GameState.FightEnd));
             }
-            roundMeter1.AddRound();
         }
     }
 

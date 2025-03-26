@@ -29,7 +29,6 @@ public class RoundMeterBehaviour : MonoBehaviour
         }
 
         ResetRounds();
-        Debug.Log(spriteRenderers.Length);
     }
 
     public void AddRound()
@@ -37,6 +36,8 @@ public class RoundMeterBehaviour : MonoBehaviour
         if(roundsWon < spriteRenderers.Length)
         {
             Debug.Log("Won 1 Round");
+            Debug.Log(roundsWon);
+            Debug.Log(spriteRenderers.Length);
             spriteRenderers[roundsWon].gameObject.SetActive(true);
             roundsWon++;
         }
