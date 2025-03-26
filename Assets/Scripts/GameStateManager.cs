@@ -15,6 +15,8 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] PauseMenuBehaviour endFightMenu;
     [SerializeField] AudioSource backgroundMusic;
     [SerializeField] AudioSource fightEndMusic;
+    [SerializeField] GameObject instructionText;
+    [SerializeField] GameObject pauseMenu;
 
     private GameState state;
     private bool isWaiting;
@@ -145,6 +147,8 @@ public class GameStateManager : MonoBehaviour
         timerPanel.SetActive(false);
         lifeMeter1.gameObject.SetActive(false);
         lifeMeter2.gameObject.SetActive(false);
+        pauseMenu.SetActive(false);
+        instructionText.SetActive(false);
         endFightMenu.gameObject.SetActive(true);
     }
 
