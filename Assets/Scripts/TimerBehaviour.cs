@@ -18,7 +18,7 @@ public class TimerBehaviour : MonoBehaviour
     {
         displayTime -= Time.deltaTime;
         
-        int timeOnTimer = Math.Max(0, (int) Math.Ceiling(displayTime));
+        int timeOnTimer = Math.Max(1, (int) Math.Ceiling(displayTime));
         timer.text = timeOnTimer.ToString();
     }
 
