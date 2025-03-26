@@ -136,6 +136,10 @@ public class GameStateManager : MonoBehaviour
             fightEndMusic.Play();
         }
 
+        fighter1.ResetVelocity();
+        fighter2.ResetVelocity();
+        fighter1.ResetAnimation();
+        fighter2.ResetAnimation();
         fighter1.enabled = false;
         fighter2.enabled = false;
         timerPanel.SetActive(false);

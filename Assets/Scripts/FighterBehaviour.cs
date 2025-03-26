@@ -191,4 +191,9 @@ public class FighterBehaviour : MonoBehaviour
         animator.SetBool("Hit", false);
         animator.SetBool("Run", false);
     }
+
+    public void ResetVelocity()
+    {
+        rigidBody.linearVelocity = Vector3.zero;
+    }
 }

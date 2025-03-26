@@ -27,12 +27,20 @@ public class ButtonBehaviour : MonoBehaviour
         Application.Quit();
     }
 
-    public IEnumerator WaitForSoundAndUnPause()
+    public IEnumerator WaitForSoundAndClose()
     {
         AudioSource audioSource = GetComponent<AudioSource>();
         audioSource.Play();
         yield return new WaitForSeconds(0.2f);
         pauseMenu.Close();
+    }
+
+    public IEnumerator WaitForSoundAndOpen()
+    {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
+        yield return new WaitForSeconds(0.2f);
+        pauseMenu.Open();
     }
 
     public void goToMenu()
@@ -64,7 +72,30 @@ public class ButtonBehaviour : MonoBehaviour
     {
         if(pauseMenu != null)
         {
-            StartCoroutine(WaitForSoundAndUnPause());
+            StartCoroutine(WaitForSoundAndClose());
+        }
+    }
+
+    public void OpenPauseMenu()
+    {
+        if(pauseMenu != null)
+        {
+            StartCoroutine(WaitForSoundAndOpen());
+        }
+    }
+
+    public void TogglePauseMenu()
+    {
+        if(pauseMenu != null)
+        {
+            if (pauseMenu.gameObject.activeInHierarchy)
+            {
+                ClosePauseMenu();
+            }
+            else if (!pauseMenu.gameObject.activeInHierarchy)
+            {
+                OpenPauseMenu();
+            }
         }
     }
 }
