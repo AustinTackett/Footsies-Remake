@@ -75,6 +75,59 @@ public class FighterBehaviour : MonoBehaviour
         }
     }
 
+    /*
+    Methods Called from user input
+    */
+
+    public void OnAttack1Input()
+    {
+        if(isDead) return;
+        if(!enabled) return;
+
+        if(!animator.GetBool("Attack1") && !animator.GetBool("Hit"))
+        {
+            animator.SetBool("Attack1", true);
+            attack1Audio.Play();
+            OnAttack1();
+        }
+    }
+
+    public void OnDashInput()
+    {
+        // Needs to be implemented
+    }
+
+    public void OnPauseMenu()
+    {
+        Debug.Log(PauseMenu.isActiveAndEnabled);
+        if(!PauseMenu.isActiveAndEnabled)
+        {
+            pauseMenuAudio.Play();
+            PauseMenu.Open();
+        }
+    }
+
+    public void OnMoveInput(InputValue value)
+    {
+        moveDir = value.Get<Vector2>();
+    }
+
+    /*
+    Handle Logic of From Inputs
+    */
+
+    public void OnDeath()
+    {
+        if(isDead) return;
+
+        deathAudio.Play();
+        isDead = true;
+        animator.SetBool("Attack1", false);
+        animator.SetBool("Hit", false);
+        animator.SetBool("Run", false);
+        animator.SetTrigger("Death");      
+    }
+
     public void FaceMovementDir(Vector3 velocity)
     {
         if(velocity.x > 0)
@@ -134,51 +187,9 @@ public class FighterBehaviour : MonoBehaviour
         animator.SetBool("Hit", false);
     }
 
-    public void OnAttack1Input()
-    {
-        if(isDead) return;
-        if(!enabled) return;
-
-        if(!animator.GetBool("Attack1") && !animator.GetBool("Hit"))
-        {
-            animator.SetBool("Attack1", true);
-            attack1Audio.Play();
-            OnAttack1();
-        }
-    }
-
-    public void OnDashInput()
-    {
-        // Needs to be implemented
-    }
-
-
-    public void OnDeath()
-    {
-        if(isDead) return;
-
-        deathAudio.Play();
-        isDead = true;
-        animator.SetBool("Attack1", false);
-        animator.SetBool("Hit", false);
-        animator.SetBool("Run", false);
-        animator.SetTrigger("Death");      
-    }
-
-    public void OnPauseMenu()
-    {
-        Debug.Log(PauseMenu.isActiveAndEnabled);
-        if(!PauseMenu.isActiveAndEnabled)
-        {
-            pauseMenuAudio.Play();
-            PauseMenu.Open();
-        }
-    }
-
-    public void OnMoveInput(InputValue value)
-    {
-        moveDir = value.Get<Vector2>();
-    }
+    /*
+    Utilities
+    */
 
     public void ResetPosition()
     {

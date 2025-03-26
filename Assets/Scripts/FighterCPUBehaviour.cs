@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,8 @@ public class FighterCPUBehaviour : MonoBehaviour
     [SerializeField] FighterBehaviour humanPlayer;
 
     private bool isDead;
+    private float attackCooldown;
+    private float attackStartTime;
 
     private Animator animator;
     private Rigidbody2D rigidBody;
@@ -25,6 +28,8 @@ public class FighterCPUBehaviour : MonoBehaviour
 
     void Awake()
     {
+        attackCooldown = 2;
+        attackStartTime = Time.time;
         isDead = false;
         moveDir = Vector2.zero;
         selfExcludedLayerMask = ~(1 << gameObject.layer);
@@ -58,7 +63,11 @@ public class FighterCPUBehaviour : MonoBehaviour
 
         if (directionToPlayer.magnitude < 2)
         {
-            OnAttack1Input();
+            float timeSinceAttack = Time.time - attackStartTime;
+            if(timeSinceAttack >= attackCooldown)
+            {
+                OnAttack1Input();
+            }
         }
 
         // Handling results of input
@@ -97,6 +106,7 @@ public class FighterCPUBehaviour : MonoBehaviour
         {
             animator.SetBool("Attack1", true);
             attack1Audio.Play();
+            attackStartTime = Time.time;
             OnAttack1();
         }
     }

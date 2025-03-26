@@ -6616,6 +6616,10 @@ PrefabInstance:
       value: Fighter 2
       objectReference: {fileID: 0}
     - target: {fileID: 6065415230574070520, guid: 8e27285544122ec4c90318aff30270b9, type: 3}
+      propertyPath: speed
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065415230574070520, guid: 8e27285544122ec4c90318aff30270b9, type: 3}
       propertyPath: LifeMeter
       value: 
       objectReference: {fileID: 1498254003}
