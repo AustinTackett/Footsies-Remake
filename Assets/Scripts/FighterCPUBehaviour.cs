@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class FighterBehaviour : MonoBehaviour
+public class FighterCPUBehaviour : MonoBehaviour
 {
     public float speed = 300;
     public float attackRange = 4;
@@ -103,7 +103,7 @@ public class FighterBehaviour : MonoBehaviour
         foreach(RaycastHit2D hit in hits)
         {
             GameObject collisionGO = hit.collider.gameObject;
-            if(collisionGO.TryGetComponent<FighterCPUBehaviour>(out FighterCPUBehaviour opponent))
+            if(collisionGO.TryGetComponent<FighterBehaviour>(out FighterBehaviour opponent))
             {
                 opponent.LifeMeter.RemoveHeart();
                 if(opponent.LifeMeter.lifeCount > 0)

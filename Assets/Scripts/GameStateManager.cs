@@ -4,7 +4,7 @@ using System.Collections;
 public class GameStateManager : MonoBehaviour
 {
     [SerializeField] FighterBehaviour fighter1;
-    [SerializeField] FighterBehaviour fighter2;
+    [SerializeField] FighterCPUBehaviour fighter2;
     [SerializeField] LifeMeterBehaviour lifeMeter1;
     [SerializeField] LifeMeterBehaviour lifeMeter2;
     [SerializeField] TimerBehaviour preGameTimer;

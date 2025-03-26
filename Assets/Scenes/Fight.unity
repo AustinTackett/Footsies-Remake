@@ -5305,17 +5305,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2502240142044900713, guid: 8e27285544122ec4c90318aff30270b9, type: 3}
   m_PrefabInstance: {fileID: 2190122775830204305}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1587242590 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6516161847148407493, guid: 8e27285544122ec4c90318aff30270b9, type: 3}
-  m_PrefabInstance: {fileID: 2190122775830204305}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1566134414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a47151e88ec75b04e915dfe23c02c97d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &1587242600
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5413,6 +5402,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1587242610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566134414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86f75031886656d46aabbd1702be2614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 300
+  attackRange: 4
+  attackRadius: 1
+  LifeMeter: {fileID: 1498254003}
+  PauseMenu: {fileID: 965672912}
 --- !u!1 &1593814189
 GameObject:
   m_ObjectHideFlags: 0
@@ -6567,7 +6573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fighter1: {fileID: 840245305}
-  fighter2: {fileID: 1587242590}
+  fighter2: {fileID: 0}
   lifeMeter1: {fileID: 886743752}
   lifeMeter2: {fileID: 1498254003}
   preGameTimer: {fileID: 2070038375}
@@ -6870,10 +6876,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6516161847148407493, guid: 8e27285544122ec4c90318aff30270b9, type: 3}
+    - {fileID: 1047251182509955475, guid: 8e27285544122ec4c90318aff30270b9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2502240142044900713, guid: 8e27285544122ec4c90318aff30270b9, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1587242610}
     - targetCorrespondingSourceObject: {fileID: 2502240142044900713, guid: 8e27285544122ec4c90318aff30270b9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1587242600}
