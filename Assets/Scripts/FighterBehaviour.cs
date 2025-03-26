@@ -37,7 +37,11 @@ public class FighterBehaviour : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(isDead) return;
+        if(isDead)
+        {
+            rigidBody.linearVelocity = Vector3.zero;
+            return;
+        }
 
         Vector3 velocity = moveDir * speed * Time.fixedDeltaTime;
 

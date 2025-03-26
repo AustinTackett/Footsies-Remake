@@ -1,5 +1,5 @@
 {
-    "name": "InputSystem_Actions",
+    "name": "Fighter2_InputAction",
     "maps": [
         {
             "name": "Player",
@@ -39,7 +39,7 @@
                 {
                     "name": "left",
                     "id": "d2581a9b-1d11-4566-b27d-b92aff5fabbc",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -50,7 +50,7 @@
                 {
                     "name": "right",
                     "id": "fcfe95b8-67b9-4526-84b5-5d0bc98d6400",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -61,7 +61,7 @@
                 {
                     "name": "Up",
                     "id": "47ecfa53-d13a-4cb4-a6b3-ddf514fbc397",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -72,7 +72,7 @@
                 {
                     "name": "Down",
                     "id": "c117950c-fdb0-4ec5-92aa-6b0e85191a81",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -83,7 +83,7 @@
                 {
                     "name": "",
                     "id": "57ed1700-f51f-46d0-a11a-7f2d16ab34dd",
-                    "path": "<Keyboard>/j",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

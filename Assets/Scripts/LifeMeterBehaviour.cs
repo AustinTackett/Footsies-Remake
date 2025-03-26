@@ -7,6 +7,7 @@ public class LifeMeterBehaviour : MonoBehaviour
     public Sprite LifeSprite;
     public Sprite EmptyLifeSprite;
     public Image[] spriteRenderers;
+    public bool leftToRight;
     [HideInInspector] public int lifeCount;
 
     void Awake()
@@ -35,6 +36,14 @@ public class LifeMeterBehaviour : MonoBehaviour
     public void RemoveHeart()
     {
         int heartIndex = lifeCount - 1;
+
+        // Is the array accessed left to right or right to left
+        if(!leftToRight)
+        {
+            heartIndex = spriteRenderers.Length - heartIndex - 1;
+        }
+
+
         if(heartIndex < spriteRenderers.Length && heartIndex >= 0)
         {
             spriteRenderers[heartIndex].sprite = EmptyLifeSprite;

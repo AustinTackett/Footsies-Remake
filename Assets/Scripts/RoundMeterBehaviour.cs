@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class RoundMeterBehaviour : MonoBehaviour
 {
+    public bool leftToRight;
     [HideInInspector] public int roundsWon;
     private Image[] spriteRenderers;
 
@@ -35,10 +36,13 @@ public class RoundMeterBehaviour : MonoBehaviour
     {
         if(roundsWon < spriteRenderers.Length)
         {
-            Debug.Log("Won 1 Round");
-            Debug.Log(roundsWon);
-            Debug.Log(spriteRenderers.Length);
-            spriteRenderers[roundsWon].gameObject.SetActive(true);
+            int roundIndex = roundsWon;
+            if(!leftToRight)
+            {
+                roundIndex = spriteRenderers.Length - roundIndex - 1;
+            }
+
+            spriteRenderers[roundIndex].gameObject.SetActive(true);
             roundsWon++;
         }
     }    
