@@ -8,6 +8,7 @@ public class FighterCPUBehaviour : MonoBehaviour
     public float attackRange = 4;
     public float attackRadius = 1;
     public LifeMeterBehaviour LifeMeter;
+    [SerializeField] FighterBehaviour humanPlayer;
 
     private bool isDead;
 
@@ -50,12 +51,18 @@ public class FighterCPUBehaviour : MonoBehaviour
             return;
         }
 
-        // Where CPU actually performs inputs
-        // OnAttack1Input();
+        // CPU LOGIC (more to player and attack)
 
+        Vector2 directionToPlayer = humanPlayer.transform.position - transform.position;
+        OnMoveInput(directionToPlayer);
+
+        if (directionToPlayer.magnitude < 2)
+        {
+            OnAttack1Input();
+        }
 
         // Handling results of input
-        Vector3 velocity = moveDir * speed * Time.fixedDeltaTime;
+        Vector3 velocity = moveDir.normalized * speed * Time.fixedDeltaTime;
 
         if(animator.GetBool("Attack1") || animator.GetBool("Hit"))
         {
@@ -94,9 +101,14 @@ public class FighterCPUBehaviour : MonoBehaviour
         }
     }
 
-    public void OnMoveInput(InputValue value)
+    public void OnMoveInput(Vector2 value)
     {
-        moveDir = value.Get<Vector2>();
+        moveDir = value;
+    }
+
+    public void OnDashInput()
+    {
+        // Needs to be implemented
     }
 
     /*

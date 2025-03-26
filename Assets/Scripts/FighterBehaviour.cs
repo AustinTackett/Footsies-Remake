@@ -53,7 +53,7 @@ public class FighterBehaviour : MonoBehaviour
             return;
         }
 
-        Vector3 velocity = moveDir * speed * Time.fixedDeltaTime;
+        Vector3 velocity = moveDir.normalized * speed * Time.fixedDeltaTime;
 
         if(animator.GetBool("Attack1") || animator.GetBool("Hit"))
         {
@@ -146,6 +146,12 @@ public class FighterBehaviour : MonoBehaviour
             OnAttack1();
         }
     }
+
+    public void OnDashInput()
+    {
+        // Needs to be implemented
+    }
+
 
     public void OnDeath()
     {
