@@ -20,6 +20,7 @@ public class GameStateManager : MonoBehaviour
         FightStart,
         Fight,
         FightEnd,
+        GameOver
     }
 
     void Awake()
@@ -40,14 +41,17 @@ public class GameStateManager : MonoBehaviour
                 break;   
             case GameState.FightEnd:
                 UpdateFightEnd();
-                break;        
+                break;     
+            case GameState.GameOver:
+                UpdateGameOver();
+                break;   
         }
     }
 
     private void UpdateFightStart()
     {
         // This gets called way more times then it should
-        // but sometimes the update order makes it so the player state
+        // but sometimes the update order makes it so the player's state
         // can change between the round end and round start
         // so this is a temporary fix
         preGameTimer.gameObject.SetActive(true);
@@ -77,10 +81,15 @@ public class GameStateManager : MonoBehaviour
         {
             if(!isWaiting)
             {
-                Debug.Log("Player 2 won");
                 roundMeter2.AddRound();
-                StartCoroutine(WaitThenTransition(GameState.FightEnd));
-                
+                if(roundMeter1.roundsWon >= 3)
+                {
+                    StartCoroutine(WaitThenTransition(GameState.GameOver, 1));
+                }
+                else
+                {
+                    StartCoroutine(WaitThenTransition(GameState.FightEnd, 1));
+                }
             }
         }
 
@@ -88,9 +97,15 @@ public class GameStateManager : MonoBehaviour
         {
             if(!isWaiting)
             {
-                Debug.Log("Player 1 won");
                 roundMeter1.AddRound();
-                StartCoroutine(WaitThenTransition(GameState.FightEnd));
+                if(roundMeter1.roundsWon >= 3)
+                {
+                    StartCoroutine(WaitThenTransition(GameState.GameOver, 1));
+                }
+                else
+                {
+                    StartCoroutine(WaitThenTransition(GameState.FightEnd, 1));
+                }
             }
         }
     }
@@ -103,10 +118,15 @@ public class GameStateManager : MonoBehaviour
         state = GameState.FightStart;
     }
 
-    private IEnumerator WaitThenTransition(GameState transitionState)
+    private void UpdateGameOver()
+    {
+        Debug.Log("Game Over");
+    }
+
+    private IEnumerator WaitThenTransition(GameState transitionState, int waitTime)
     {
         isWaiting = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(waitTime);
         state = transitionState;
         isWaiting = false;
     }
