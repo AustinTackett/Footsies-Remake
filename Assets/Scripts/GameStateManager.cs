@@ -9,6 +9,9 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] LifeMeterBehaviour lifeMeter2;
     [SerializeField] TimerBehaviour preGameTimer;
     [SerializeField] TimerBehaviour timer;
+    [SerializeField] RoundMeterBehaviour roundMeter1;
+    [SerializeField] RoundMeterBehaviour roundMeter2;
+
     private GameState state;
     private bool isWaiting;
 
@@ -76,6 +79,7 @@ public class GameStateManager : MonoBehaviour
             {
                 Debug.Log("Player 2 won");
                 StartCoroutine(WaitThenTransition(GameState.FightEnd));
+                roundMeter2.AddRound();
             }
         }
 
@@ -86,6 +90,7 @@ public class GameStateManager : MonoBehaviour
                 Debug.Log("Player 1 won");
                 StartCoroutine(WaitThenTransition(GameState.FightEnd));
             }
+            roundMeter1.AddRound();
         }
     }
 

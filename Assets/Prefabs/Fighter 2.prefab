@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 755451303606627797}
   m_Layer: 7
   m_Name: Fighter 2
-  m_TagString: Untagged
+  m_TagString: Fighter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,7 +90,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &6516161847148407493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +106,7 @@ MonoBehaviour:
   speed: 300
   attackRange: 2
   attackRadius: 1
+  LifeMeter: {fileID: 0}
 --- !u!95 &832847736347380484
 Animator:
   serializedVersion: 7
@@ -140,7 +141,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
+  m_Mass: 1000000
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0

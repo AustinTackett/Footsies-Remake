@@ -2,15 +2,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class LifeMeterBehaviour : MonoBehaviour
+public class RoundMeterBehaviour : MonoBehaviour
 {
-    public Sprite LifeSprite;
-    public Sprite EmptyLifeSprite;
-    public Image[] spriteRenderers;
-    [HideInInspector] public int lifeCount;
+    [HideInInspector] public int roundsWon;
+    private Image[] spriteRenderers;
 
     void Awake()
     {
+        roundsWon= 0;
         spriteRenderers = GetComponentsInChildren<Image>();
         Image panelSprite = GetComponent<Image>();
 
@@ -29,25 +28,26 @@ public class LifeMeterBehaviour : MonoBehaviour
             }
         }
 
-        ResetHearts();
+        ResetRounds();
+        Debug.Log(spriteRenderers.Length);
     }
 
-    public void RemoveHeart()
+    public void AddRound()
     {
-        int heartIndex = lifeCount - 1;
-        if(heartIndex < spriteRenderers.Length && heartIndex >= 0)
+        if(roundsWon < spriteRenderers.Length)
         {
-            spriteRenderers[heartIndex].sprite = EmptyLifeSprite;
-            lifeCount--;
+            Debug.Log("Won 1 Round");
+            spriteRenderers[roundsWon].gameObject.SetActive(true);
+            roundsWon++;
         }
     }    
 
-    public void ResetHearts()
+    public void ResetRounds()
     {
-        lifeCount = spriteRenderers.Length;
+        roundsWon = 0;
         for(int i = 0; i < spriteRenderers.Length; i++)
         {
-            spriteRenderers[i].sprite = LifeSprite;
+            spriteRenderers[i].gameObject.SetActive(false);
         }
     }
 }
