@@ -20,6 +20,7 @@ public class FighterBehaviour : MonoBehaviour
     private Quaternion startingRotation;
     private AudioSource hitAudio;
     private AudioSource deathAudio;
+    private AudioSource attack1Audio;
 
     void Awake()
     {
@@ -38,6 +39,7 @@ public class FighterBehaviour : MonoBehaviour
         AudioSource[] audioSources = GetComponents<AudioSource>();
         hitAudio = audioSources[0];
         deathAudio = audioSources[1];
+        attack1Audio = audioSources[2];
     }
 
     void FixedUpdate()
@@ -80,6 +82,7 @@ public class FighterBehaviour : MonoBehaviour
 
     public void OnAttack1()
     {
+        attack1Audio.Play();
         Vector3 playerCenter = selfCollider.bounds.center;
         Vector3 direction;
         if (transform.rotation.eulerAngles.y == 180)
