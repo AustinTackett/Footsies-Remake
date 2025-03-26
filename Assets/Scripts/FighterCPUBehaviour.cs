@@ -8,7 +8,6 @@ public class FighterCPUBehaviour : MonoBehaviour
     public float attackRange = 4;
     public float attackRadius = 1;
     public LifeMeterBehaviour LifeMeter;
-    public PauseMenuBehaviour PauseMenu;
 
     private bool isDead;
 
@@ -22,7 +21,6 @@ public class FighterCPUBehaviour : MonoBehaviour
     private AudioSource hitAudio;
     private AudioSource deathAudio;
     private AudioSource attack1Audio;
-    private AudioSource pauseMenuAudio;
 
     void Awake()
     {
@@ -42,7 +40,6 @@ public class FighterCPUBehaviour : MonoBehaviour
         hitAudio = audioSources[0];
         deathAudio = audioSources[1];
         attack1Audio = audioSources[2];
-        pauseMenuAudio = audioSources[3];
     }
 
     void FixedUpdate()
@@ -53,6 +50,11 @@ public class FighterCPUBehaviour : MonoBehaviour
             return;
         }
 
+        // Where CPU actually performs inputs
+        OnAttack1Input();
+
+
+        // Handling results of input
         Vector3 velocity = moveDir * speed * Time.fixedDeltaTime;
 
         if(animator.GetBool("Attack1") || animator.GetBool("Hit"))
@@ -73,6 +75,58 @@ public class FighterCPUBehaviour : MonoBehaviour
         {
             animator.SetBool("Run", true);
         }
+    }
+
+    /*
+    Methods CPU can call to remotely control fighter
+    */
+
+    public void OnAttack1Input()
+    {
+        if(isDead) return;
+        if(!enabled) return;
+
+        if(!animator.GetBool("Attack1") && !animator.GetBool("Hit"))
+        {
+            animator.SetBool("Attack1", true);
+            attack1Audio.Play();
+            OnAttack1();
+        }
+    }
+
+    public void OnMoveInput(InputValue value)
+    {
+        moveDir = value.Get<Vector2>();
+    }
+
+    /*
+    Methods for handling actual logic of input do not need to call yourself
+    */
+
+    public void OnHit()
+    {
+        animator.SetBool("Hit", true);
+        // Make sure if attack is interrupted the attacking state is released
+        animator.SetBool("Attack1", false);
+
+        hitAudio.Play();
+    }
+
+    public void OnEndHit()
+    {
+        animator.SetBool("Hit", false);
+    }
+
+    public void OnDeath()
+    {
+        if(isDead) return;
+
+        deathAudio.Play();
+        isDead = true;
+        animator.SetBool("Attack1", false);
+        animator.SetBool("Hit", false);
+        animator.SetBool("Run", false);
+        animator.SetTrigger("Death");      
     }
 
     public void FaceMovementDir(Vector3 velocity)
@@ -119,60 +173,9 @@ public class FighterCPUBehaviour : MonoBehaviour
         animator.SetBool("Attack1", false);
     }
 
-
-    public void OnHit()
-    {
-        animator.SetBool("Hit", true);
-        // Make sure if attack is interrupted the attacking state is released
-        animator.SetBool("Attack1", false);
-
-        hitAudio.Play();
-    }
-
-    public void OnEndHit()
-    {
-        animator.SetBool("Hit", false);
-    }
-
-    public void OnAttack1Input()
-    {
-        if(isDead) return;
-        if(!enabled) return;
-
-        if(!animator.GetBool("Attack1") && !animator.GetBool("Hit"))
-        {
-            animator.SetBool("Attack1", true);
-            attack1Audio.Play();
-            OnAttack1();
-        }
-    }
-
-    public void OnDeath()
-    {
-        if(isDead) return;
-
-        deathAudio.Play();
-        isDead = true;
-        animator.SetBool("Attack1", false);
-        animator.SetBool("Hit", false);
-        animator.SetBool("Run", false);
-        animator.SetTrigger("Death");      
-    }
-
-    public void OnPauseMenu()
-    {
-        Debug.Log(PauseMenu.isActiveAndEnabled);
-        if(!PauseMenu.isActiveAndEnabled)
-        {
-            pauseMenuAudio.Play();
-            PauseMenu.Open();
-        }
-    }
-
-    public void OnMoveInput(InputValue value)
-    {
-        moveDir = value.Get<Vector2>();
-    }
+    /*
+    Utilities
+    */
 
     public void ResetPosition()
     {
