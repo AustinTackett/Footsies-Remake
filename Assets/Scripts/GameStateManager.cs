@@ -13,6 +13,8 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] RoundMeterBehaviour roundMeter1;
     [SerializeField] RoundMeterBehaviour roundMeter2;
     [SerializeField] PauseMenuBehaviour endFightMenu;
+    [SerializeField] AudioSource backgroundMusic;
+    [SerializeField] AudioSource fightEndMusic;
 
     private GameState state;
     private bool isWaiting;
@@ -124,6 +126,18 @@ public class GameStateManager : MonoBehaviour
 
     private void UpdateGameOver()
     {
+        if(backgroundMusic.isPlaying)
+        {
+            backgroundMusic.Stop();
+        }
+
+        if(!fightEndMusic.isPlaying)
+        {
+            fightEndMusic.Play();
+        }
+
+        fighter1.enabled = false;
+        fighter2.enabled = false;
         timerPanel.SetActive(false);
         lifeMeter1.gameObject.SetActive(false);
         lifeMeter2.gameObject.SetActive(false);

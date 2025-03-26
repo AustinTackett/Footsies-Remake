@@ -85,7 +85,6 @@ public class FighterBehaviour : MonoBehaviour
 
     public void OnAttack1()
     {
-        attack1Audio.Play();
         Vector3 playerCenter = selfCollider.bounds.center;
         Vector3 direction;
         if (transform.rotation.eulerAngles.y == 180)
@@ -138,10 +137,12 @@ public class FighterBehaviour : MonoBehaviour
     public void OnAttack1Input()
     {
         if(isDead) return;
+        if(!enabled) return;
 
         if(!animator.GetBool("Attack1") && !animator.GetBool("Hit"))
         {
             animator.SetBool("Attack1", true);
+            attack1Audio.Play();
             OnAttack1();
         }
     }
