@@ -5,21 +5,25 @@ using System;
 public class TimerBehaviour : MonoBehaviour
 {
     public int StartValue = 99;
-    [HideInInspector] public int displayTime;
-    private float startTime;
+    [HideInInspector] public float displayTime;
     private TextMeshProUGUI timer;
 
     void Start()
     {
-        startTime = Time.time;
         timer = GetComponent<TextMeshProUGUI>();
+        ResetTime();
     }
 
     void Update()
     {
-        float timeSinceStart = Time.time - startTime;
-        displayTime = StartValue - (int) Math.Ceiling(timeSinceStart);
-        displayTime = Math.Max(0, displayTime);
-        timer.text = displayTime.ToString();
+        displayTime -= Time.deltaTime;
+        
+        int timeOnTimer = Math.Max(0, (int) Math.Ceiling(displayTime));
+        timer.text = timeOnTimer.ToString();
+    }
+
+    public void ResetTime()
+    {
+        displayTime = StartValue;
     }
 }

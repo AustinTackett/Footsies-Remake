@@ -9,7 +9,7 @@ public class LifeMeterBehaviour : MonoBehaviour
     public Image[] spriteRenderers;
     [HideInInspector] public int lifeCount;
 
-    void Start()
+    void Awake()
     {
         spriteRenderers = GetComponentsInChildren<Image>();
         Image panelSprite = GetComponent<Image>();
