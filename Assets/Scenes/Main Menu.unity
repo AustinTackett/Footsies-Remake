@@ -3092,6 +3092,23 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1003188065}
     m_Modifications:
+    - target: {fileID: 868178126789939203, guid: 2e68f0cba5c4b5d48982aee07ce025a0, type: 3}
+      propertyPath: m_text
+      value: 'You will fight an opponent by moving around the arena and slashing
+        your sword.
+
+
+        The winner is whomever wins three rounds first.
+
+
+        Movement
+        is controlled with WASD and to perform a slash attack press the J key.
+
+
+        During
+        the fight pressing ESC opens a menu to restart the fight, return to the main
+        menu, and reopen this instruction panel.'
+      objectReference: {fileID: 0}
     - target: {fileID: 6894485130006103192, guid: 2e68f0cba5c4b5d48982aee07ce025a0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
