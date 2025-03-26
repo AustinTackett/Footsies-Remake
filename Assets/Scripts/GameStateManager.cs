@@ -8,9 +8,11 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] LifeMeterBehaviour lifeMeter1;
     [SerializeField] LifeMeterBehaviour lifeMeter2;
     [SerializeField] TimerBehaviour preGameTimer;
+    [SerializeField] GameObject timerPanel;
     [SerializeField] TimerBehaviour timer;
     [SerializeField] RoundMeterBehaviour roundMeter1;
     [SerializeField] RoundMeterBehaviour roundMeter2;
+    [SerializeField] PauseMenuBehaviour endFightMenu;
 
     private GameState state;
     private bool isWaiting;
@@ -122,7 +124,10 @@ public class GameStateManager : MonoBehaviour
 
     private void UpdateGameOver()
     {
-        Debug.Log("Game Over");
+        timerPanel.SetActive(false);
+        lifeMeter1.gameObject.SetActive(false);
+        lifeMeter2.gameObject.SetActive(false);
+        endFightMenu.gameObject.SetActive(true);
     }
 
     private IEnumerator WaitThenTransition(GameState transitionState, int waitTime)

@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class ButtonBehaviour : MonoBehaviour
 {
+    public PauseMenuBehaviour pauseMenu;
+
     public void WaitAndTransition(string sceneName) 
     {
         StartCoroutine(WaitForSoundAndTransition(sceneName));
@@ -17,16 +19,36 @@ public class ButtonBehaviour : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public IEnumerator WaitForSoundAndExit()
+    {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
+        yield return new WaitForSeconds(0.2f);
+        Application.Quit();
+    }
+
+    public IEnumerator WaitForSoundAndUnPause()
+    {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
+        yield return new WaitForSeconds(0.2f);
+        pauseMenu.Close();
+    }
+
     public void goToMenu()
     {
-        WaitAndTransition("Menu");
+        WaitAndTransition("Main Menu");
     }
 
     public void goToFight()
     {
-        Debug.Log("fight");
         WaitAndTransition("Fight");
     }
+
+    public void QuitGame()
+    {
+        WaitAndExit() ;
+    }    
 
     public void restartScene()
     {
@@ -38,16 +60,11 @@ public class ButtonBehaviour : MonoBehaviour
         StartCoroutine(WaitForSoundAndExit());
     }
 
-    public IEnumerator WaitForSoundAndExit()
+    public void ClosePauseMenu()
     {
-        AudioSource audioSource = GetComponent<AudioSource>();
-        audioSource.Play();
-        yield return new WaitForSeconds(0.2f);
-        Application.Quit();
-    }
-
-    public void QuitGame()
-    {
-        WaitAndExit() ;
+        if(pauseMenu != null)
+        {
+            StartCoroutine(WaitForSoundAndUnPause());
+        }
     }
 }

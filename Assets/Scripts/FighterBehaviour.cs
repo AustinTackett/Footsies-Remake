@@ -8,6 +8,7 @@ public class FighterBehaviour : MonoBehaviour
     public float attackRange = 4;
     public float attackRadius = 1;
     public LifeMeterBehaviour LifeMeter;
+    public PauseMenuBehaviour PauseMenu;
 
     private bool isDead;
 
@@ -21,6 +22,7 @@ public class FighterBehaviour : MonoBehaviour
     private AudioSource hitAudio;
     private AudioSource deathAudio;
     private AudioSource attack1Audio;
+    private AudioSource pauseMenuAudio;
 
     void Awake()
     {
@@ -40,6 +42,7 @@ public class FighterBehaviour : MonoBehaviour
         hitAudio = audioSources[0];
         deathAudio = audioSources[1];
         attack1Audio = audioSources[2];
+        pauseMenuAudio = audioSources[3];
     }
 
     void FixedUpdate()
@@ -153,6 +156,16 @@ public class FighterBehaviour : MonoBehaviour
         animator.SetBool("Hit", false);
         animator.SetBool("Run", false);
         animator.SetTrigger("Death");      
+    }
+
+    public void OnPauseMenu()
+    {
+        Debug.Log(PauseMenu.isActiveAndEnabled);
+        if(!PauseMenu.isActiveAndEnabled)
+        {
+            pauseMenuAudio.Play();
+            PauseMenu.Open();
+        }
     }
 
     public void OnMoveInput(InputValue value)
