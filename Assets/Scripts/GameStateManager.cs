@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] AudioSource fightEndMusic;
     [SerializeField] GameObject instructionText;
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] TextMeshProUGUI winText;
 
     private GameState state;
     private bool isWaiting;
@@ -91,6 +93,7 @@ public class GameStateManager : MonoBehaviour
                 Debug.Log(roundMeter2.roundsWon);
                 if(roundMeter2.roundsWon >= 3)
                 {
+                    winText.text = "Player 2 WINS";
                     StartCoroutine(WaitThenTransition(GameState.GameOver, 1));
                 }
                 else
@@ -108,6 +111,7 @@ public class GameStateManager : MonoBehaviour
                 Debug.Log(roundMeter1.roundsWon);
                 if(roundMeter1.roundsWon >= 3)
                 {
+                    winText.text = "Player 1 WINS";
                     StartCoroutine(WaitThenTransition(GameState.GameOver, 1));
                 }
                 else
