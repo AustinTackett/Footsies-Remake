@@ -51,7 +51,7 @@ public class FighterCPUBehaviour : MonoBehaviour
         }
 
         // Where CPU actually performs inputs
-        OnAttack1Input();
+        // OnAttack1Input();
 
 
         // Handling results of input
